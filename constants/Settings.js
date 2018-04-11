@@ -13,5 +13,6 @@ export default {
   DEBUG_ON: false,
 
   MUSIC_ON: false,
+  gravity: 2000 * SCALE,
   SCALE,
 };

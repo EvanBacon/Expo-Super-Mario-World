@@ -24,4 +24,13 @@ export default {
       spin: { frames: [155, 156, 153, 154], fps: fps.mysteryBox.spin },
     },
   },
+  powers: {
+    feather: 8,
+    yellowStar: 9,
+    redStar: 10,
+    moon: 23,
+    fireFlower: 24,
+    redMushroom: 25,
+    greenMushroom: 26,
+  },
 };

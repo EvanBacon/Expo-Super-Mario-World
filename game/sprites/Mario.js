@@ -37,7 +37,7 @@ export default {
         crouch: 278,
         lookingUp: 238,
         jumping: 228,
-        falling: 231,
+        falling: 232,
       },
       big: {
         standing: 332,

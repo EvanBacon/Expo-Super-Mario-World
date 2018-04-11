@@ -26,6 +26,8 @@ class Coins extends GameObject {
     const coin = game.coins.create(x, y, 'items');
     coin.anchor.setTo(0.5, 0.5);
     coin.scale.setTo(SCALE, SCALE);
+    coin.body.height = 16 * SCALE;
+    coin.body.width = 12 * SCALE;
 
     const { frames, fps } = SpriteMap.coin[type].spin;
     coin.frame = frames[0];

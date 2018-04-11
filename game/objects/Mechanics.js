@@ -147,27 +147,31 @@ class Mechanics extends GameObject {
     } else {
       if (player.jumpType != 2) {
         player.animations.stop();
-        player.frame = player.animationForName({ name: 'standing' });
+        player.frame = player.spriteMap.standing;
       }
     }
 
     if (player.jumpType === 1) {
       if (player.body.velocity.y < 0) {
-        player.frame = player.animationForName({ name: 'jumping' });
+        player.frame = player.spriteMap.jumping;
       } else if (player.body.velocity.y > 0) {
-        player.frame = player.animationForName({ name: 'falling' });
+        player.frame = player.spriteMap.falling;
       }
     }
 
     if (this.pressing && isUp && player.body.touching.down && player.hitPlatform) {
-      player.frame = player.animationForName({ name: 'lookingUp' });
+      player.frame = player.spriteMap.lookingUp;
     } else if (this.pressing && isDown && player.body.touching.down && player.hitPlatform) {
-      player.frame = player.animationForName({ name: 'crouch' });
+      player.frame = player.spriteMap.crouch;
     }
 
     // Coin collisions
     game.physics.arcade.collide(game.coins, game.platforms);
     game.physics.arcade.overlap(player, game.coins, this.collectCoin, null, this);
+
+    game.physics.arcade.overlap(player, game.powers, this.collectPower, null, this);
+
+    game.physics.arcade.collide(player, game.mysteryBoxes);
 
     game.physics.arcade.collide(player, game.tilesGroup);
     game.physics.arcade.collide(player, game.blocksGroup);
@@ -178,6 +182,11 @@ class Mechanics extends GameObject {
     AudioManager.sharedInstance.playAsync('coin');
     this.score += 10;
     // scoreText.text = 'Score: ' + score;
+  };
+
+  collectPower = (player, power) => {
+    power.kill();
+    player.addPower(power._powerId);
   };
 
   spin = () => {

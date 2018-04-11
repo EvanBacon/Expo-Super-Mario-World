@@ -33,7 +33,6 @@ export default {
       'pipes.png': require(`./assets/images/pipes/pipes.png`),
     },
     sprites: {
-      'luigi.png': require(`./assets/images/sprites/luigi.png`),
       'mario.json': require(`./assets/images/sprites/mario.json`),
       'mario.png': require(`./assets/images/sprites/mario.png`),
     },

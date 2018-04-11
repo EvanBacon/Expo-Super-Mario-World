@@ -2,61 +2,89 @@ import Settings from '../../constants/Settings';
 const { SCALE } = Settings;
 import GameObject from '../GameObject';
 import SpriteMap from '../sprites/Mario';
+import { Phaser } from 'expo-phaser';
 
-class Player extends GameObject {
+class Player extends Phaser.Sprite {
+  details = {
+    name: 'mario',
+    power: 'normal',
+    size: 'small',
+  };
+
+  direction = 'right';
+  hitPlatform = false;
+  jumptimeStart = -1;
+  jumpType = 0;
+
+  _spriteMap = null;
+  set spriteMap(value) {
+    if (value === this._spriteMap) {
+      return;
+    }
+    this._spriteMap = value;
+
+    this.frame = value.standing;
+    console.log('make player', this.frame);
+    this._addAnimationForName({ name: 'walk' });
+    this._addAnimationForName({ name: 'run' });
+    this._addAnimationForName({ name: 'spin' });
+  }
+
+  get spriteMap() {
+    return this._spriteMap;
+  }
+
   constructor({ game }) {
-    super({ game });
+    super(game, 24 * SCALE, 120, 'mario');
+    game.world.addChild(this);
+    game.physics.arcade.enable(this);
+    this.scale.setTo(SCALE, SCALE);
 
-    const player = this.game.add.sprite(24 * SCALE, this.game.world.height - 48 * SCALE, 'mario');
+    this.body.bounce.y = 0;
+    this.body.gravity.y = Settings.gravity;
+    this.body.collideWorldBounds = true;
+    this.body.drag.setTo(250, 0);
 
-    player.details = {
-      name: 'mario',
-      power: 'normal',
-      size: 'big',
-    };
-
-    player.animationForName = function({ name: animationName }) {
-      const { name, power, size } = this.details;
-      return SpriteMap[name][power][size][animationName];
-    };
-
-    player.addAnimationForName = function({ name }) {
-      const { frames, fps } = this.animationForName({ name });
-      this.animations.add(name, frames, fps, true);
-    };
-
-    player.scale.setTo(SCALE, SCALE);
-
-    this.game.physics.arcade.enable(player);
-    player.body.bounce.y = 0;
-    player.body.gravity.y = 2000 * SCALE;
-    player.body.collideWorldBounds = true;
-
-    // default direction
-    player.direction = 'right';
-
-    player.anchor.setTo(0.5, 1);
+    this.anchor.setTo(0.5, 1);
 
     // Dimensions for slope collision
-    player.body.width = 13 * SCALE;
-    player.body.height = 15 * SCALE;
-    this.game.slopes.enable(player);
+    this.body.width = 13 * SCALE;
+    this.body.height = 15 * SCALE;
+
+    game.slopes.enable(this);
 
     // Default frame
-    player.frame = 14;
-
-    player.addAnimationForName({ name: 'walk' });
-    player.addAnimationForName({ name: 'run' });
-    player.addAnimationForName({ name: 'spin' });
-
-    player.hitPlatform = false;
-    player.jumptimeStart = -1;
-    player.jumpType = 0;
-
-    player.body.drag.setTo(250, 0);
-
-    this.game.player = player;
+    this.updateDetails();
   }
+
+  updateDetails = () => {
+    const { name, power, size } = this.details;
+    this.spriteMap = SpriteMap[name][power][size];
+  };
+
+  addPower = named => {
+    this.details.power = named;
+    this.updateDetails();
+  };
+
+  _addAnimationForName = ({ name }) => {
+    if (!this.spriteMap) {
+      return;
+    }
+
+    const { frames, fps } = this.spriteMap[name];
+    this.animations.add(name, frames, fps, true);
+  };
+
+  grow = () => {
+    this.details.size = 'big';
+    this.updateDetails();
+  };
+
+  shrink = () => {
+    this.details.size = 'small';
+    this.updateDetails();
+  };
 }
 
 export default Player;
