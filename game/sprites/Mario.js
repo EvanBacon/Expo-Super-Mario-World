@@ -1,0 +1,100 @@
+const fps = {
+  run: 16,
+  spin: 20,
+  walk: 10,
+};
+
+export default {
+  mario: {
+    normal: {
+      small: {
+        standing: 14,
+        walk: { frames: [15, 14], fps: fps.walk },
+        run: { frames: [15, 14], fps: fps.run },
+        spin: { frames: [20, 21, 14], fps: fps.spin },
+        crouch: 49,
+        lookingUp: 9,
+        jumping: 1,
+        falling: 3,
+      },
+      big: {
+        standing: 105,
+        walk: { frames: [112, 106, 105], fps: fps.walk },
+        run: { frames: [112, 106, 105], fps: fps.run },
+        spin: { frames: [123, 124, 105], fps: fps.spin },
+        crouch: 150,
+        lookingUp: 131,
+        jumping: 104,
+        falling: 111,
+      },
+    },
+    fire: {
+      small: {
+        standing: 248,
+        walk: { frames: [249, 248], fps: fps.walk },
+        run: { frames: [249, 248], fps: fps.run },
+        spin: { frames: [254, 255, 248], fps: fps.spin },
+        crouch: 278,
+        lookingUp: 238,
+        jumping: 228,
+        falling: 231,
+      },
+      big: {
+        standing: 332,
+        walk: { frames: [333, 348, 332], fps: fps.walk },
+        run: { frames: [333, 348, 332], fps: fps.run },
+        spin: { frames: [353, 354, 332], fps: fps.spin },
+        crouch: 384,
+        lookingUp: 368,
+        jumping: 330,
+        falling: 338,
+      },
+    },
+  },
+  luigi: {
+    normal: {
+      small: {
+        standing: 33,
+        walk: { frames: [34, 33], fps: fps.walk },
+        run: { frames: [34, 33], fps: fps.run },
+        spin: { frames: [39, 40, 33], fps: fps.spin },
+        crouch: 53,
+        lookingUp: 29,
+        jumping: 12,
+        falling: 14,
+      },
+      big: {
+        standing: 115,
+        walk: { frames: [116, 115], fps: fps.walk },
+        run: { frames: [116, 117, 115], fps: fps.run },
+        spin: { frames: [39, 40, 115], fps: fps.spin },
+        crouch: 53,
+        lookingUp: 29,
+        jumping: 12,
+        falling: 14,
+      },
+    },
+    fire: {
+      small: {
+        standing: 248,
+        walk: { frames: [249, 248], fps: fps.walk },
+        run: { frames: [249, 248], fps: fps.run },
+        spin: { frames: [254, 255, 248], fps: fps.spin },
+        crouch: 278,
+        lookingUp: 238,
+        jumping: 228,
+        falling: 231,
+      },
+      big: {
+        standing: 332,
+        walk: { frames: [333, 332], fps: fps.walk },
+        run: { frames: [333, 348, 332], fps: fps.run },
+        spin: { frames: [353, 354, 332], fps: fps.spin },
+        crouch: 384,
+        lookingUp: 368,
+        jumping: 330,
+        falling: 338,
+      },
+    },
+  },
+};

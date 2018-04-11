@@ -1,0 +1,27 @@
+{
+  "name": "basic",
+  "version": "0.0.0",
+  "description": "expo-phaser basic example",
+  "author": "support@expo.io",
+  "private": true,
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "fix": "rm -rf node_modules/gl-matrix/.babelrc"
+  },
+  "dependencies": {
+    "expo": "^26.0.0",
+    "expo-asset-utils": "^0.0.4-alpha.2",
+    "expo-multi-touch": "^0.0.0",
+    "expo-phaser": "^0.0.1-alpha.0",
+    "react": "16.3.1",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-26.0.0.tar.gz",
+    "sat": "^0.7.0"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "eslint": "^4.9.0",
+    "eslint-config-universe": "^1.0.6",
+    "prettier": "^1.7.4"
+  }
+}

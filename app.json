@@ -1,0 +1,22 @@
+{
+  "expo": {
+    "name": "exponots",
+    "description": "tiny expo people",
+    "slug": "exponots",
+    "sdkVersion": "26.0.0",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "primaryColor": "#E1E4F0",
+    "icon": "./assets/icon.png",
+    "loading": {
+      "icon": "./assets/icon.png",
+      "hideExponentText": false
+    },
+    "packagerOpts": {
+      "assetExts": ["json"]
+    },
+    "ios": {
+      "supportsTablet": true
+    }
+  }
+}
